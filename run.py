@@ -17,7 +17,7 @@ class ExtractPDFData:
       print(page.extract_text())
   
 
-  def use_fitz(self, pdf_file):
+  def use_PyMuPDF(self, pdf_file):
     import fitz
     doc = fitz.open(pdf_file)
     for page in doc:
