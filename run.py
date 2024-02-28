@@ -61,8 +61,18 @@ if __name__ == '__main__':
       if method.startswith('use_'):
         print(f' - {method.replace('use_','')}')
   elif read_pdf_file:
+    lib = args['library']
     x = ExtractPDFData()
-    x.use_pdfplumber(pdf_file=args['pdf_file'])
+    match lib:
+      case 'PyMuPDF':
+        x.use_PyMuPDF(pdf_file=args['pdf_file'])
+      case 'PyPDF2':
+        x.use_PyPDF2(pdf_file=args['pdf_file'])
+      case 'pdfplumber':
+        x.use_pdfplumber(pdf_file=args['pdf_file'])
+      case _:
+        print(f'Invalid library {lib}')
+    
   else:
     parser.print_help()
 
